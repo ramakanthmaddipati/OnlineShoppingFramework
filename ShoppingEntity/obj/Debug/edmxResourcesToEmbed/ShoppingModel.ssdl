@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HCLDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HCLDB.dbo.Cart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="PId" />
+    </Key>
+    <Property Name="PId" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="int" Nullable="false" />
+    <Property Name="cname" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cid" Type="int" />
+    <Property Name="pname" Type="varchar" MaxLength="50" />
+    <Property Name="picture" Type="varchar" MaxLength="50" />
+    <Property Name="price" Type="int" />
+    <Property Name="qty" Type="int" />
+    <Property Name="content" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK__products__cid__56B3DD81">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="cid" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HCLDBModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Cart].[PId] AS [PId], 
+    [Cart].[Price] AS [Price], 
+    [Cart].[Quantity] AS [Quantity]
+    FROM [dbo].[Cart] AS [Cart]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__products__cid__56B3DD81" Association="Self.FK__products__cid__56B3DD81">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

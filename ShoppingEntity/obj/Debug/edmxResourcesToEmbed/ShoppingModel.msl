@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HCLDBModelStoreContainer" CdmEntityContainer="HCLDBEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="HCLDBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="cname" ColumnName="cname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="HCLDBModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="pname" ColumnName="pname" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="content" ColumnName="content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="HCLDBModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="PId" ColumnName="PId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
